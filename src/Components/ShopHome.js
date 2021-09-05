@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import Header from "./Header/Header";
+import Header from "./Header";
 import Product from "./Product/Product";
-import Footer from "./Footer/Footer";
+import Footer from "./Footer";
 import { Row, Col } from "react-bootstrap";
 const productData = [
   {
@@ -26,7 +26,7 @@ const productData = [
     id: 1,
     name: "Desktop",
     price: { current: "$15", offer: "" },
-    rating: 4,
+    rating: 1,
     isCart: false,
     isSale: true,
     img: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/Dell_Inspiron_One_23_Touch_AIO_Desktop_PC.png/1200px-Dell_Inspiron_One_23_Touch_AIO_Desktop_PC.png",
@@ -36,7 +36,7 @@ const productData = [
     id: 10,
     name: "Sale Item",
     price: { current: "$50", offer: "$25" },
-    rating: 4,
+    rating: 3,
     isCart: false,
     isSale: false,
     img: "https://dummyimage.com/450x300/dee2e6/6c757d.jpg",
@@ -54,7 +54,7 @@ const productData = [
     id: 8,
     name: "Fancy Product",
     price: { current: "$7", offer: "" },
-    rating: 4,
+    rating: 2,
     isCart: false,
     isSale: true,
     img: "https://dummyimage.com/450x300/dee2e6/6c757d.jpg",
@@ -81,7 +81,7 @@ const productData = [
     id: 4,
     name: "Keyboard",
     price: { current: "$5", offer: "" },
-    rating: 3,
+    rating: 0,
     isCart: false,
     isSale: false,
     img: "https://m.media-amazon.com/images/I/81PLqxtrJ3L._SL1500_.jpg",
@@ -152,12 +152,16 @@ const productData = [
 ];
 export default function ShopHome() {
   const [productList, setProductList] = useState([]);
+
+  /*CartCount value used in the Header Component* and CardCount values will be changing every handleCart call*/
   const [cartCount, setCartCount] = useState(0);
 
+  /* Set the Initial products*/
   useEffect(() => {
     setProductList(productData);
   }, []);
 
+  /* add and remove items to the cart and set the cart counts */
   const handleCart = (id) => {
     const data = productList.filter((product) => product.id === id);
     data[0].isCart = !data[0].isCart;

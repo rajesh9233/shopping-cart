@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import ShopHome from "./ShopHome";
+import ShopHome from "./Components/ShopHome";
 import "./index.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
